@@ -13,12 +13,13 @@ namespace ExcelinDotNetCoreEPPlus
         static void Main(string[] args)
         {
             List<UserDetails> userDetails = ReadFromExcel<List<UserDetails>>(@"C:\Users\TestDataRead.xlsx");
+
             Console.WriteLine("ID   " + "Name " + "City " + "Country ");
             foreach (UserDetails details in userDetails)
             {
                 Console.WriteLine(details.ID +" "+ details.Name +" "+ details.City+" " +details.Country);
             }
-            WriteToExcel(@"C:\Users\ali_i\TestDataWrite.xlsx");
+            WriteToExcel(@"C:\Test\TestDataWrite.xlsx");
 
 
         }
