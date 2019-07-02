@@ -12,13 +12,13 @@ namespace ExcelinDotNetCoreEPPlus
     {
         static void Main(string[] args)
         {
-            List<UserDetails> userDetails = ReadFromExcel<List<UserDetails>>("TestDataRead.xlsx");
+            List<UserDetails> userDetails = ReadFromExcel<List<UserDetails>>(@"C:\Users\TestDataRead.xlsx");
             Console.WriteLine("ID   " + "Name " + "City " + "Country ");
             foreach (UserDetails details in userDetails)
             {
                 Console.WriteLine(details.ID +" "+ details.Name +" "+ details.City+" " +details.Country);
             }
-            //WriteToExcel("TestDataWrite.xlsx");
+            WriteToExcel(@"C:\Users\ali_i\TestDataWrite.xlsx");
 
 
         }
@@ -58,8 +58,8 @@ namespace ExcelinDotNetCoreEPPlus
                         row[cell.Start.Column - 1] = cell.Text;
                     }
                 }
-               //Get everything as generics and let my end user decides on casting to their choice
-                var generatedType = JsonConvert.DeserializeObject<List<UserDetails>>(JsonConvert.SerializeObject(excelasTable));
+                //Get everything as generics and let my end user decides on casting to their choice
+                var generatedType = JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(excelasTable));
                 return (T)Convert.ChangeType(generatedType, typeof(T));
             }
         }
